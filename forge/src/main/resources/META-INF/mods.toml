@@ -9,9 +9,9 @@ version = "${version}"
 displayName = "Bulking"
 authors = "neirenoir"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A plugin for Diet inspired by SOL: Valheim. Do away with hunger, just stuff your stomach for awesome buffs!
 '''
-#logoFile = ""
+logoFile = "assets/bulking/icon.png"
 
 [[dependencies.bulking]]
 modId = "forge"
