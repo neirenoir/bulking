@@ -46,8 +46,7 @@ public class MixinDietClientEvents {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/Minecraft;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V"
-            ),
-            remap = true
+            )
     )
     private static void redirectSetScreen(Minecraft minecraft, Screen screen) {
         if (screen instanceof DietScreen) {
