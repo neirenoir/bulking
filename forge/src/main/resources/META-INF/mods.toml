@@ -7,7 +7,7 @@ license = "Insert License Here"
 modId = "bulking"
 version = "${version}"
 displayName = "Bulking"
-authors = "Me!"
+authors = "neirenoir"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
@@ -31,5 +31,12 @@ side = "BOTH"
 modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.bulking]]
+modId = "diet"
+mandatory = true
+versionRange = "[2.1.1,)"
 ordering = "AFTER"
 side = "BOTH"

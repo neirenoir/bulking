@@ -1,3 +1,5 @@
+import net.fabricmc.loom.api.LoomGradleExtensionAPI
+
 tasks.wrapper {
     gradleVersion = "8.11"
     // You can either download the binary-only version of Gradle (BIN) or
@@ -20,14 +22,15 @@ architectury {
 subprojects {
     apply(plugin = "dev.architectury.loom")
 
+    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
     dependencies {
         "minecraft"("com.mojang:minecraft:${project.property("minecraft_version")}")
         // The following line declares the mojmap mappings, you may use other mappings as well
-        // "mappings"(
-        //        loom.officialMojangMappings()
-        // )
+        "mappings"(
+            loom.officialMojangMappings(),
+        )
         // The following line declares the yarn mappings you may select this one as well.
-        "mappings"("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
+        // "mappings"("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
     }
 }
 
@@ -43,11 +46,29 @@ allprojects {
     group = rootProject.property("maven_group").toString()
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+        maven {
+            name = "Modrinth"
+            url = uri("https://api.modrinth.com/maven")
+            content {
+                includeGroup("maven.modrinth")
+            }
+        }
+
+        maven {
+            name = "Illusive Soulworks"
+            url = uri("https://maven.theillusivec4.top/")
+        }
+
+        maven {
+            name = "Fuzs Mod Resources"
+            url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+        }
+
+        maven {
+            name = "Ladysnake Mods"
+            url = uri("https://maven.ladysnake.org/releases")
+        }
+        // other repositories
     }
 
     dependencies {

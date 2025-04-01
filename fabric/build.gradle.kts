@@ -6,6 +6,8 @@ repositories {
     maven {
         url = uri("https://maven.quiltmc.org/repository/release/")
     }
+
+    maven { url = uri("https://maven.terraformersmc.com/releases/") }
 }
 
 architectury {
@@ -42,6 +44,21 @@ dependencies {
 
     // Fabric Kotlin
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
+
+    // Cardinal Components
+    modApi("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${rootProject.property("cardinal_components_version")}")
+    modApi("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${rootProject.property("cardinal_components_version")}")
+
+    // Diet
+    modImplementation("com.illusivesoulworks.spectrelib:spectrelib-fabric:${rootProject.property("spectrelib_range")}")
+    modImplementation("maven.modrinth:${rootProject.property("diet_slug")}:${rootProject.property("diet_fabric_version")}")
+
+    // FCAP
+    modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${rootProject.property("fcap_version")}")
+    modLocalRuntime("fuzs.forgeconfigscreens:forgeconfigscreens-fabric:${rootProject.property("fcs_version")}")
+
+    // Mod Menu - for config testing purposes
+    modRuntimeOnly("com.terraformersmc:modmenu:7.2.2")
 }
 
 tasks.processResources {

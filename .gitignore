@@ -1,3 +1,5 @@
 .gradle/
 .direnv/
 .idea/
+build/
+run/

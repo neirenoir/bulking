@@ -44,13 +44,20 @@ repositories {
 dependencies {
     forge("net.minecraftforge:forge:${rootProject.property("forge_version")}")
     // Remove the next line if you don't want to depend on the API
-    modApi("dev.architectury:architectury-forge:${rootProject.property("architectury_api_version")}")
+    modImplementation("dev.architectury:architectury-forge:${rootProject.property("architectury_api_version")}")
 
     common(project(":common", "namedElements")) { isTransitive = false }
     shadowCommon(project(":common", "transformProductionForge")) { isTransitive = false }
 
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
+
+    // Diet
+    modImplementation("com.illusivesoulworks.spectrelib:spectrelib-forge:${rootProject.property("spectrelib_range")}")
+    modImplementation("maven.modrinth:${rootProject.property("diet_slug")}:${rootProject.property("diet_forge_version")}")
+
+    // YACL
+    modRuntimeOnly("fuzs.forgeconfigscreens:forgeconfigscreens-forge:${rootProject.property("fcs_version")}")
 }
 
 tasks.processResources {
