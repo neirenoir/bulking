@@ -8,7 +8,7 @@ written with the intention of making food more interesting and unique.
 
 ## Where is my health!?
 **Bulking** introduces a harsh penalty to your default maximum health. You will
-no longer start with twenty hearts: now it's only three! But worry not, you can 
+no longer start with ten hearts: now it's only three! But worry not, you can 
 recover them, along with many more bonuses, by eating balanced **meals**. Not only
 has your maximum health been reduced, but natural regeneration is also disabled. 
 This may seem harsh, but eating meals will gradually restore your health cap, 
