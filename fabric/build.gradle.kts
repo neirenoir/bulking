@@ -65,6 +65,10 @@ tasks.processResources {
     inputs.property("group", rootProject.property("maven_group"))
     inputs.property("version", project.version)
 
+    // Copy icon to resources directory
+    inputs.file(rootProject.file("common/src/main/resources/icon.png"))
+    from(rootProject.file("common/src/main/resources/icon.png"))
+
     filesMatching("fabric.mod.json") {
         expand(
             mapOf(

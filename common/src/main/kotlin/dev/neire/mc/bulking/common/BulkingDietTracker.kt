@@ -29,6 +29,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import java.util.*
 import kotlin.math.max
+import kotlin.math.min
 
 typealias NutritionData = MutableMap<String, Float>
 typealias ComputedEffects =
@@ -64,6 +65,16 @@ class BulkingDietTracker(
         init {
             EFFECT_DURATION[MobEffects.CONFUSION] = 300
         }
+
+        fun <K> applyStomachFormula(
+            groups: Map<K, Float>,
+            stomachWeight: Float,
+        ): Map<K, Float> =
+            groups
+                .mapValues { (_, value) ->
+                    val modifiedValue = value * BALANCE_AROUND / DEFAULT_STOMACH_SIZE
+                    min(modifiedValue, 1f) * stomachWeight
+                }.toMutableMap()
     }
 
     override fun consume(stack: ItemStack?) {
@@ -365,14 +376,20 @@ class BulkingDietTracker(
                 .get()
                 .toFloat()
         val stomachWeight = 1f - nutritionWeight
-        return stomach
-            .flatMap { it.second.entries }
-            .groupingBy { it.key }
-            .fold(0f) { acc, entry ->
-                acc + entry.value * BALANCE_AROUND / DEFAULT_STOMACH_SIZE
-            }.mapValues { (_, value) ->
-                value.coerceAtMost(1f) * stomachWeight
-            }.toMutableMap()
+
+        // Aggregate values from stomach contents
+        val aggregatedValues =
+            stomach
+                .flatMap { it.second.entries }
+                .groupingBy { it.key }
+                .fold(0f) { acc, entry -> acc + entry.value }
+                .toMutableMap()
+
+        // Apply formula to get weighted values
+        return applyStomachFormula(
+            aggregatedValues,
+            stomachWeight,
+        ).toMutableMap()
     }
 
     override fun getValues(): NutritionData {

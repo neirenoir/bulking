@@ -12,7 +12,7 @@
     "sources": "https://github.com/neirenoir/bulking"
   },
   "license": "MIT",
-  "icon": "assets/bulking/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -23,7 +23,8 @@
     ]
   },
   "mixins": [
-    "bulking.mixins.json"
+    "bulking.mixins.json",
+    "bulking-fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.10",
@@ -31,6 +32,7 @@
     "java": ">=17",
     "architectury": ">=9.2.14",
     "fabric-api": "*",
+    "fabric-language-kotlin": ">=1.11.0",
     "diet": "2.1.1"
   }
 }

@@ -6,6 +6,8 @@ import dev.neire.mc.bulking.common.BulkingFoodData
 import dev.neire.mc.bulking.config.BulkingConfig
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
+import net.minecraftforge.client.event.RenderGuiOverlayEvent
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent
@@ -78,6 +80,13 @@ class BulkingForge {
             }
 
             foodData.dietTracker.digest()
+        }
+    }
+
+    @SubscribeEvent
+    fun onHudRender(event: RenderGuiOverlayEvent.Pre) {
+        if (event.overlay == VanillaGuiOverlay.FOOD_LEVEL.type()) {
+            event.isCanceled = true
         }
     }
 }

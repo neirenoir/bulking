@@ -19,7 +19,7 @@ loom {
         )
 
         mixinConfig("bulking.mixins.json")
-        mixinConfig("bulking.mixins.json")
+        mixinConfig("bulking-forge.mixins.json")
     }
 }
 
@@ -64,6 +64,10 @@ tasks.processResources {
     inputs.property("group", rootProject.property("maven_group"))
     inputs.property("version", project.version)
 
+    // Copy icon to resources directory
+    inputs.file(rootProject.file("common/src/main/resources/icon.png"))
+    from(rootProject.file("common/src/main/resources/icon.png"))
+
     filesMatching("META-INF/mods.toml") {
         expand(
             mapOf(
@@ -73,6 +77,7 @@ tasks.processResources {
                 "minecraft_version" to rootProject.property("minecraft_version"),
                 "architectury_version" to rootProject.property("architectury_api_version"),
                 "kotlin_for_forge_version" to rootProject.property("kotlin_for_forge_version"),
+                "logoFile" to "icon.png",
             ),
         )
     }

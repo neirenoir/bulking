@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT"
 
 [[mods]]
 modId = "bulking"
@@ -11,7 +11,7 @@ authors = "neirenoir"
 description = '''
 A plugin for Diet inspired by SOL: Valheim. Do away with hunger, just stuff your stomach for awesome buffs!
 '''
-logoFile = "assets/bulking/icon.png"
+logoFile = "${logoFile}"
 
 [[dependencies.bulking]]
 modId = "forge"
