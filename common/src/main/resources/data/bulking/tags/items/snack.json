@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:apple",
+    "minecraft:chorus_fruit",
+    "minecraft:melon_slice",
+    "minecraft:dried_kelp",
+    "minecraft:spider_eye",
+    "minecraft:tropical_fish",
+    "minecraft:carrot",
+    "minecraft:beetroot"
+  ]
+}

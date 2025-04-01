@@ -102,6 +102,7 @@ tasks.jar {
 }
 
 tasks.sourcesJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     val commonSources = project(":common").tasks.getByName<Jar>("sourcesJar")
     dependsOn(commonSources)
     from(commonSources.archiveFile.map { zipTree(it) })

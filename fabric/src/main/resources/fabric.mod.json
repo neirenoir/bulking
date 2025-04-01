@@ -3,7 +3,7 @@
   "id": "bulking",
   "version": "${version}",
   "name": "Bulking",
-  "description": "A plugin for Diet inspired by SOL: Valheim. Do away with hunger, just stuff your stomach for awesome buffs!",
+  "description": "A plugin for Diet inspired by SOL: Valheim. Do away with hunger: just stuff your stomach for awesome buffs!",
   "authors": [
     "neirenoir"
   ],
@@ -33,6 +33,10 @@
     "architectury": ">=9.2.14",
     "fabric-api": "*",
     "fabric-language-kotlin": ">=1.11.0",
+    "forgeconfigapiport": ">=8.0.2",
     "diet": "2.1.1"
+  },
+  "recommends": {
+    "forgeconfigscreens": ">=8.0.2"
   }
 }

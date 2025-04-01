@@ -9,6 +9,7 @@ import com.illusivesoulworks.diet.common.data.effect.DietEffect.MatchMethod
 import com.illusivesoulworks.diet.common.data.suite.DietSuites
 import com.illusivesoulworks.diet.common.util.DietResult
 import com.illusivesoulworks.diet.platform.Services
+import dev.neire.mc.bulking.common.Snacks.isSnack
 import dev.neire.mc.bulking.common.registries.BulkingAttributes
 import dev.neire.mc.bulking.config.BulkingConfig
 import dev.neire.mc.bulking.networking.BulkingMessages
@@ -27,7 +28,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import java.util.*
+import java.util.UUID
 import kotlin.math.max
 import kotlin.math.min
 
@@ -183,7 +184,7 @@ class BulkingDietTracker(
         // If the stomach is full and this is not a snack, that means we
         // have eaten a canAlwaysEat() food. These food items should override
         // old stomach contents
-        if (stomach.size >= stomachSize && foodProperties?.isFastFood == false) {
+        if (stomach.size >= stomachSize && !stack.isSnack()) {
             val overeaten = (stomach.size + 1) - stomachSize
             val newStomach =
                 stomach.slice(
@@ -192,7 +193,7 @@ class BulkingDietTracker(
             stomach.retainAll(newStomach)
         }
 
-        if (foodProperties == null || !foodProperties.isFastFood) {
+        if (foodProperties == null || !stack.isSnack()) {
             // We will make a concession to make all non-food ItemStacks
             // full-course meals
             val result = foodNutritionalData.mapKeys { (k, _) -> k.name }
@@ -364,7 +365,7 @@ class BulkingDietTracker(
         }
 
         val isGodMode = this.player.abilities.invulnerable
-        val isSnack = foodProperties?.isFastFood == true
+        val isSnack = stack.isSnack()
         val isVomitInducing = stack.item == Items.ROTTEN_FLESH
 
         return isGodMode || isSnack || isVomitInducing

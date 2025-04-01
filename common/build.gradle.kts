@@ -14,14 +14,6 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modCompileOnlyApi("dev.architectury:architectury:${rootProject.property("architectury_api_version")}")
 
-    // CC
-    modCompileOnlyApi(
-        "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${rootProject.property("cardinal_components_version")}",
-    )
-    modCompileOnlyApi(
-        "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${rootProject.property("cardinal_components_version")}",
-    )
-
     // FCAP
     modCompileOnly("fuzs.forgeconfigapiport:forgeconfigapiport-common:${rootProject.property("fcap_version")}")
 

@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Bulking"
 authors = "neirenoir"
 description = '''
-A plugin for Diet inspired by SOL: Valheim. Do away with hunger, just stuff your stomach for awesome buffs!
+A plugin for Diet inspired by SOL: Valheim. Do away with hunger: just stuff your stomach for awesome buffs!
 '''
 logoFile = "${logoFile}"
 
@@ -40,3 +40,17 @@ mandatory = true
 versionRange = "[2.1.1,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.bulking]]
+modId = "kotlinforforge"
+mandatory = true
+versionRange = "[4.3.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.bulking]]
+modId = "forgeconfigscreens"
+mandatory = false
+versionRange = "[8.0.2,)"
+ordering = "AFTER"
+side = "CLIENT"
