@@ -4,6 +4,8 @@
 inspired by [Spice of Life: Valheim Edition](https://www.curseforge.com/minecraft/mc-mods/spice-of-life-valheim-edition),
 written with the intention of making food more interesting and unique.
 
+![Bulking UI](https://github.com/neirenoir/bulking/blob/master/bulking_ui.png?raw=true)
+
 ## Where is my health!?
 **Bulking** introduces a harsh penalty to your default maximum health. You will
 no longer start with twenty hearts: now it's only three! But worry not, you can 
