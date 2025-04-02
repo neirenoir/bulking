@@ -4,7 +4,9 @@ import dev.architectury.event.events.client.ClientPlayerEvent
 import dev.architectury.event.events.common.PlayerEvent
 import dev.neire.mc.bulking.common.BulkingFoodData
 import dev.neire.mc.bulking.common.HealthManager
+import dev.neire.mc.bulking.common.effects.SumptuousFeastEffect
 import dev.neire.mc.bulking.common.registries.BulkingAttributes
+import dev.neire.mc.bulking.data.SumptuousFeastAttributesManager
 import dev.neire.mc.bulking.networking.BulkingMessages
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -18,6 +20,8 @@ object Bulking {
         BulkingMessages.registerC2SPackets()
         HealthManager.register()
         BulkingAttributes.register()
+        SumptuousFeastEffect.register()
+        SumptuousFeastAttributesManager.register()
         registerSpawnHandlers()
     }
 

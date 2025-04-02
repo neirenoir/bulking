@@ -1,0 +1,13 @@
+{
+  "positive_attributes": [
+    "minecraft:generic.max_health",
+    "minecraft:generic.movement_speed",
+    "minecraft:generic.attack_damage",
+    "minecraft:generic.attack_speed",
+    "minecraft:generic.armor",
+    "minecraft:generic.armor_toughness",
+    "minecraft:generic.knockback_resistance",
+    "minecraft:generic.luck"
+  ],
+  "negative_attributes": []
+}

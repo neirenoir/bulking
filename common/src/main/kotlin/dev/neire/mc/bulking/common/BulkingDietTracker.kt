@@ -10,6 +10,7 @@ import com.illusivesoulworks.diet.common.data.suite.DietSuites
 import com.illusivesoulworks.diet.common.util.DietResult
 import com.illusivesoulworks.diet.platform.Services
 import dev.neire.mc.bulking.common.Snacks.isSnack
+import dev.neire.mc.bulking.common.effects.SumptuousFeastEffect
 import dev.neire.mc.bulking.common.registries.BulkingAttributes
 import dev.neire.mc.bulking.config.BulkingConfig
 import dev.neire.mc.bulking.networking.BulkingMessages
@@ -219,16 +220,34 @@ class BulkingDietTracker(
             this.nutrition.retainAll(newNutrition)
         }
 
+        val stomachSizeAttr =
+            player.getAttribute(BulkingAttributes.STOMACH_SIZE_ATTRIBUTE)
+                ?: return
         val stomachValues = getStomachValues().toMutableMap()
         this.nutrition.add(stomachValues)
+        val stomachContentsOnSleep = this.stomach.size
         this.stomach.clear()
+
+        player.removeAllEffects()
+        applyEffects()
+
+        if (stomachContentsOnSleep >= stomachSizeAttr.value) {
+            val sumptuousFeastEffect =
+                MobEffectInstance(
+                    SumptuousFeastEffect,
+                    24000, // duration
+                    0, // amplifier
+                    false, // is ambient
+                    true, // show in inventory
+                    false, // show in corner
+                )
+            player.addEffect(sumptuousFeastEffect)
+        }
 
         // Heal player
         if (player.health < player.maxHealth) {
             player.health = player.maxHealth
         }
-        player.removeAllEffects()
-        applyEffects()
     }
 
     fun computeEffects(): ComputedEffects {

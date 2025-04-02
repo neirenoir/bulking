@@ -4,7 +4,6 @@ import com.illusivesoulworks.diet.client.DietClientEvents;
 import com.illusivesoulworks.diet.client.screen.DietScreen;
 import com.illusivesoulworks.diet.client.screen.DynamicButton;
 import dev.neire.mc.bulking.client.gui.BulkingScreen;
-import dev.neire.mc.bulking.common.BulkingDietTracker;
 import dev.neire.mc.bulking.common.BulkingFoodData;
 import dev.neire.mc.bulking.common.Snacks;
 import net.minecraft.ChatFormatting;
@@ -27,7 +26,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Mixin(DietClientEvents.class)
 public class MixinDietClientEvents {
