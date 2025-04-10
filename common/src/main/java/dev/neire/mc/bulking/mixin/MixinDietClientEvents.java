@@ -35,12 +35,18 @@ public class MixinDietClientEvents {
             cancellable = true
     )
     private static void onRenderItemTooltip(Player player, ItemStack stack, List<Component> tooltips, CallbackInfo ci) {
+        if (player == null) {
+            ci.cancel();
+            return;
+        }
+
         if (stack.getItem() == Items.ROTTEN_FLESH) {
             // Add special tooltip for Rotten Flesh
             tooltips.add(Component.empty());
             tooltips.add(Component.translatable("tooltip.bulking.rotten_flesh")
                     .withStyle(ChatFormatting.RED));
             ci.cancel();
+            return;
         }
 
         boolean shouldShow = true;

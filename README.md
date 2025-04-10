@@ -40,7 +40,7 @@ some of those higher nutrient requirements, or simply help you have a more
 varied diet. The number of days that are taken into account and the importance
 they have over the "theoretical maximum" are configurable. 
 
-In addition, if you go to bed with a full belly, you will wake up feeling
+Furthermore, if you go to bed with a full belly, you will wake up feeling
 better than ever! For the following 20 minutes (a Minecraft day), you will
 enjoy a 10% to all stats thanks to the **Sumptuous Feast** effect. The
 stats Sumptuous Feast boosts are configurable via a data pack, so you can
