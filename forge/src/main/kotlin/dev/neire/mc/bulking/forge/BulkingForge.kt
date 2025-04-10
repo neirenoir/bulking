@@ -73,7 +73,7 @@ class BulkingForge {
 
     @SubscribeEvent
     fun onPlayerWakeUp(event: PlayerWakeUpEvent?) {
-        if (event != null && event.wakeImmediately()) {
+        if (event != null) {
             val foodData = event.entity.foodData
             if (foodData !is BulkingFoodData) {
                 return
