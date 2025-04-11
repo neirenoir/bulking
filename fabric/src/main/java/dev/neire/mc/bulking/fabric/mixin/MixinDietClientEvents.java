@@ -4,11 +4,13 @@ import com.illusivesoulworks.diet.api.type.IDietGroup;
 import com.illusivesoulworks.diet.client.DietClientEvents;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.neire.mc.bulking.common.BulkingDietTracker;
+import dev.neire.mc.bulking.common.BulkingFoodData;
 import dev.neire.mc.bulking.config.BulkingConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,11 +46,26 @@ public class MixinDietClientEvents {
         beneficial.clear();
         harmful.clear();
 
-        // Calculate modified values using your formula
+        boolean shouldShow = true;
+        FoodData foodData = player.getFoodData();
+        if (foodData instanceof BulkingFoodData) {
+            shouldShow =
+                    ((BulkingFoodData) foodData)
+                            .getDietTracker()
+                            .getEaten()
+                            .contains(stack.getItem());
+        } else {
+            shouldShow = false;
+        }
+
+        if (!shouldShow) {
+            ci.cancel();
+            return;
+        }
+
         float nutritionWeight = BulkingConfig.BulkingCommonConfig.INSTANCE.getNUTRITION_WEIGHT().get().floatValue();
         float stomachWeight = 1f - nutritionWeight;
 
-        // Convert the diet groups to use your formula
         Map<IDietGroup, Float> modifiedGroups = BulkingDietTracker.Companion.applyStomachFormula(groups, stomachWeight);
 
         // Add our modified tooltips
