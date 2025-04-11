@@ -53,7 +53,8 @@ public class MixinDietClientEvents {
                     ((BulkingFoodData) foodData)
                             .getDietTracker()
                             .getEaten()
-                            .contains(stack.getItem());
+                            .contains(stack.getItem())
+                    || player.isCreative();
         } else {
             shouldShow = false;
         }

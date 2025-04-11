@@ -57,7 +57,8 @@ public class MixinDietClientEvents {
                     ((BulkingFoodData) foodData)
                             .getDietTracker()
                             .getEaten()
-                            .contains(stack.getItem());
+                            .contains(stack.getItem())
+                    || player.isCreative();
         } else {
             shouldShow = false;
         }
@@ -66,7 +67,7 @@ public class MixinDietClientEvents {
             ci.cancel();
             return;
         }
-        
+
         IDietResult result = DietApi.getInstance().get(player, stack);
         Map<IDietGroup, Float> groups = result.get();
         boolean specialFood = stack.is(SPECIAL_FOOD);
