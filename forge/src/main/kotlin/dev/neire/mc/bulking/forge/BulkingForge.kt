@@ -4,6 +4,7 @@ import dev.architectury.platform.forge.EventBuses
 import dev.neire.mc.bulking.Bulking
 import dev.neire.mc.bulking.common.BulkingFoodData
 import dev.neire.mc.bulking.config.BulkingConfig
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
 import net.minecraftforge.client.event.RenderGuiOverlayEvent
@@ -73,13 +74,24 @@ class BulkingForge {
 
     @SubscribeEvent
     fun onPlayerWakeUp(event: PlayerWakeUpEvent?) {
-        if (event != null) {
+        val isClientSide = event?.entity !is ServerPlayer
+        if (isClientSide) {
+            return
+        }
+
+        if (event != null && !event.updateLevel()) {
             val foodData = event.entity.foodData
             if (foodData !is BulkingFoodData) {
                 return
             }
 
+            // Unlike Fabric's event, this event is only serverside
+            // We must sync afterwards
             foodData.dietTracker.digest()
+            foodData.dietTracker.syncStomachNutrition()
+            foodData.dietTracker.syncEffects(
+                foodData.dietTracker.computeEffects(),
+            )
         }
     }
 
