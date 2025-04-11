@@ -93,12 +93,6 @@
           "amount": 0.05
         }
       ],
-      "status_effects": [
-        {
-          "name": "minecraft:water_breathing",
-          "power": 0
-        }
-      ],
       "conditions": [
         {
           "groups": ["fruits"],
@@ -114,11 +108,12 @@
           "name": "minecraft:generic.movement_speed",
           "operation": "multiply_base",
           "amount": 0.1
-        },
+        }
+      ],
+      "status_effects": [
         {
-          "name": "minecraft:generic.swim_speed",
-          "operation": "multiply_base",
-          "amount": 0.1
+          "name": "minecraft:water_breathing",
+          "power": 0
         }
       ],
       "conditions": [
