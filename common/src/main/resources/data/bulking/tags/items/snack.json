@@ -9,7 +9,16 @@
     "minecraft:dried_kelp",
     "minecraft:spider_eye",
     "minecraft:tropical_fish",
+    "minecraft:pufferfish",
+    "minecraft:cod",
+    "minecraft:salmon",
     "minecraft:carrot",
-    "minecraft:beetroot"
+    "minecraft:beetroot",
+    "minecraft:potato",
+    "minecraft:beef",
+    "minecraft:mutton",
+    "minecraft:porkchop",
+    "minecraft:rabbit",
+    "minecraft:chicken"
   ]
 }
