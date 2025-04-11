@@ -257,8 +257,8 @@ class BulkingDietTracker(
 
         DietSuites
             .getSuite(player.level(), this.suite)
-            .ifPresent { suite: IDietSuite ->
-                for (effect in suite.effects) {
+            .ifPresent { currentSuite: IDietSuite ->
+                for (effect in currentSuite.effects) {
                     var match = true
                     var multiplier = 0
 
@@ -383,11 +383,12 @@ class BulkingDietTracker(
             return true
         }
 
+        val isFullHealth = this.player.health >= this.player.maxHealth
         val isGodMode = this.player.abilities.invulnerable
         val isSnack = stack.isSnack()
         val isVomitInducing = stack.item == Items.ROTTEN_FLESH
 
-        return isGodMode || isSnack || isVomitInducing
+        return isGodMode || (isSnack && !isFullHealth) || isVomitInducing
     }
 
     private fun getStomachValues(): NutritionData {
